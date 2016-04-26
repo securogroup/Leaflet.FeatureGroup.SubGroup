@@ -5,18 +5,7 @@
  * BSD 2-Clause "Simplified" License
  */
 
-
-(function (root, factory) {
-    if (typeof define === 'function' && define.amd) {
-        define(['leaflet'], function (L) {
-            return (root.L.FeatureGroup.SubGroup = factory(L));
-        });
-    } else if (typeof module === 'object' && module.exports) {
-        module.exports = factory(require('leaflet'));
-    } else {
-        root.L.FeatureGroup.SubGroup = factory(root.L);
-    }
-}(this, function (L) {
+(function(){
 
     var FG = L.FeatureGroup,
         FGproto = FG.prototype,
@@ -215,13 +204,10 @@
 
     });
 
-
+	
 
     // Supply with a factory for consistency with Leaflet.
     L.featureGroup.subGroup = function (parentGroup, options) {
-        return new FG.SubGroup(parentGroup, options);
+        return new SubGroup(parentGroup, options);
     };
-
-    // Just return a value to define the module export.
-    return SubGroup;
-}));
+})();
